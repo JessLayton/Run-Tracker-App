@@ -51,6 +51,7 @@ export default class RunList extends Component {
     return (
        <div>
   <h3>Logged Runs</h3>
+  <br/>
   <table className="table">
     <thead className="thead-light">
       <tr>

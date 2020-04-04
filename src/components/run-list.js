@@ -6,6 +6,7 @@ const Run = props => (
   <tr>
     <td>{props.run.distance}</td>
     <td>{props.run.time}</td>
+    <td>{props.run.speed}</td>
     <td>{props.run.location}</td>
     <td>{props.run.date.substring(0,10)}</td>
     <td>
@@ -56,6 +57,7 @@ export default class RunList extends Component {
       <tr>
         <th>Distance (kilometres)</th>
         <th>Time (minutes)</th>
+        <th>Avg Speed (kph) </th>
         <th>Location</th>
         <th>Date</th>
         <th>Actions</th>

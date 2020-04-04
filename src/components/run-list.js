@@ -50,11 +50,12 @@ export default class RunList extends Component {
     return (
        <div>
   <h3>Logged Runs</h3>
+  <br/>
   <table className="table">
     <thead className="thead-light">
       <tr>
-        <th>Distance</th>
-        <th>Time</th>
+        <th>Distance (kilometres)</th>
+        <th>Time (minutes)</th>
         <th>Location</th>
         <th>Date</th>
         <th>Actions</th>

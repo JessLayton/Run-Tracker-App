@@ -10,6 +10,7 @@ export default class EditRun extends Component {
     this.state = {
       distance: 0,
       time: 0,
+      speed: (this.distance / this.time) * 60,
       location: '',
       date: new Date(),
     }
@@ -21,6 +22,7 @@ export default class EditRun extends Component {
         this.setState({
           distance: response.data.distance,
           time: response.data.time,
+          speed: response.data.speed,
           location: response.data.location,
           date: new Date(response.data.date)
         })   
@@ -95,6 +97,7 @@ export default class EditRun extends Component {
                 onChange={this.onChangeTime}
                 />
           </div>
+         
           <div className="form-group">
             <label>Location: </label>
             <input 

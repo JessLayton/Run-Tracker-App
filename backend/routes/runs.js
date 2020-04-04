@@ -10,12 +10,14 @@ router.route('/').get((req, res) => {
 router.route('/add').post((req, res) => {
   const distance = Number(req.body.distance);
   const time = Number(req.body.time);
+  const speed = Number((req.body.distance) / (req.body.time) * 60)
   const location = req.body.location;
   const date = Date.parse(req.body.date);
 
   const newRun = new Run({
     distance,
     time,
+    speed,
     location,
     date,
   });
@@ -41,6 +43,7 @@ router.route('/update/:id').post((req, res) => {
     .then(run => {
       run.distance = Number(req.body.distance);
       run.time = Number(req.body.time);
+      run.speed =  Number((req.body.distance) / (req.body.time) * 60)
       run.location = req.body.location;
       run.date = Date.parse(req.body.date);
 

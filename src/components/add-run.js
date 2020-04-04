@@ -1,8 +1,14 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import DatePicker from 'react-datepicker';
+// import DatePicker from 'react-datepicker';
+import DateFnsUtils from '@date-io/date-fns';
+import {
+  MuiPickersUtilsProvider,
+  KeyboardDatePicker,
+} from '@material-ui/pickers';
+import Button from 'react-bootstrap/Button';
 import "../App.css"
-import "react-datepicker/dist/react-datepicker.css";
+
 
 
 export default class AddRun extends Component {
@@ -71,50 +77,68 @@ export default class AddRun extends Component {
   render() {
     return (
       <div>
-        <h3>Create New Run Log</h3>
+        <h2 className="navHeading">Create New Run Log</h2>
         <form onSubmit={this.onSubmit}>
+          <div className="form-inputs">
+            <div className="form-group-num">
+              <label>Distance (in kilometres): </label>
+              <input type="number"
+                className="form-control"
+                value={this.state.distance}
+                onChange={this.onChangeDistance}
 
-          <div className="form-group">
-            <label>Distance (in kilometres): </label>
-            <input type="number"
-              className="form-control"
-              value={this.state.distance}
-              onChange={this.onChangeDistance}
-              
-              step="0.1"
-            />
-          </div>
-          <div className="form-group">
-            <label>Time (in minutes): </label>
-            <input
-              type="number"
-              className="form-control"
-              value={this.state.time}
-              onChange={this.onChangeTime}
-              
-            />
-          </div>
-          <div className="form-group">
-            <label>Location: </label>
-            <input type="text"
-              className="form-control"
-              value={this.state.location}
-              onChange={this.onChangeLocation}
-              maxLength="100"
-            />
-          </div>
-          <div className="form-group">
-            <label>Date: </label>
-            <div>
-              <DatePicker
-                selected={this.state.date}
-                onChange={this.onChangeDate}
+                step="0.1"
               />
+            </div>
+            <div className="form-group-num">
+              <label>Time (in minutes): </label>
+              <input
+                type="number"
+                className="form-control"
+                value={this.state.time}
+                onChange={this.onChangeTime}
+
+              />
+            </div>
+            <div className="form-group">
+              <label>Location: </label>
+              <input type="text"
+                className="form-control"
+                value={this.state.location}
+                onChange={this.onChangeLocation}
+                maxLength="100"
+              />
+            </div>
+            <div className="form-group">
+              {/* <label>Date: </label>
+              <div>
+                <DatePicker
+                  selected={this.state.date}
+                  onChange={this.onChangeDate}
+                />
+              </div> */}
+               <MuiPickersUtilsProvider utils={DateFnsUtils}>
+               <KeyboardDatePicker
+          margin="normal"
+          id="date-picker-dialog"
+          label="Date"
+          format="dd/mm/yyyy"
+          value={this.state.date}
+          onChange={this.onChangeDate}
+          KeyboardButtonProps={{
+            'aria-label': 'change date',
+          }}
+        />
+               </MuiPickersUtilsProvider>
+             
             </div>
           </div>
           <p className="errorMessage">{this.state.errorMessage}</p>
           <div className="form-group">
             <input type="submit" value="Create Run Log" className="btn btn-primary" />
+          </div>
+          <div>
+          <Button href="/">Back</Button>
           </div>
         </form>
       </div>

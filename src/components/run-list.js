@@ -2,15 +2,16 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
+
 const Run = props => (
   <tr>
     <td>{props.run.distance}</td>
     <td>{props.run.time}</td>
     <td>{props.run.speed}</td>
     <td>{props.run.location}</td>
-    <td>{props.run.date.substring(0,10)}</td>
+    <td>{props.run.date.substring(8,10)}-{props.run.date.substring(5,7)}-{props.run.date.substring(0,4)}</td>
     <td>
-      <Link to={"/edit/"+props.run._id}>edit</Link> | <a href="/#" onClick={() => { props.deleteRun(props.run._id) }}>delete</a>
+      <Link to={"/edit/"+props.run._id} className="actionLinks">edit</Link> | <a className="actionLinks" href="/#" onClick={() => { props.deleteRun(props.run._id) }}>delete</a>
     </td>
   </tr>
 )
@@ -50,7 +51,7 @@ export default class RunList extends Component {
   render() {
     return (
        <div>
-  <h3>Logged Runs</h3>
+  <h2 className="navHeading">Run Logs </h2>
   <br/>
   <table className="table">
     <thead className="thead-light">

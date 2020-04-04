@@ -1,22 +1,47 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
+import Button from '@material-ui/core/Button';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
+import runPrints from "../img/footsteps.webp";
 
-export default class Navbar extends Component {
+export default function Navbar() {
 
-  render() {
-    return (
+  let [anchorEl, setAnchorEl] = React.useState(null);
+
+  let handleClick = (e) => {
+    setAnchorEl(e.currentTarget);
+  };
+
+  let handleClose = () => {
+    setAnchorEl(null);
+  };
+
+
+  return (
+    <div>
       <nav className="navbar navbar-dark bg-dark navbar-expand-lg">
-        <Link to="/" className="navbar-brand">Run Tracker</Link>
-        <div className="collpase navbar-collapse">
-        <ul className="navbar-nav mr-auto">
-         
-          <li className="navbar-item">
-          <Link to="/add" className="nav-link">Add Run</Link>
-          </li>
-        
-        </ul>
+        <div>
+          <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
+            <Link to="#" className="navbar-brand">Run Tracker</Link>
+          </Button>
+          <Menu
+            id="simple-menu"
+            anchorEl={anchorEl}
+            keepMounted
+            open={Boolean(anchorEl)}
+            onClose={handleClose}
+          >
+            <MenuItem className="navMenu" onClick={handleClose}> <Link to="/" className="nav-link">Run Logs</Link> </MenuItem>
+            <MenuItem className="navMenu" onClick={handleClose}> <Link to="/graphs" className="nav-link">Run Data</Link> </MenuItem>
+            <MenuItem className="navMenu" onClick={handleClose}> <Link to="/add" className="nav-link">Add Run</Link> </MenuItem>
+          </Menu>
         </div>
+        <div>
+          <img src={runPrints} alt="boots" id="nav-pic" />
+        </div>
+
       </nav>
-    );
-  }
+    </div>
+  );
 }

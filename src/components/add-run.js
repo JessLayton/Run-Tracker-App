@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-// import DatePicker from 'react-datepicker';
 import DateFnsUtils from '@date-io/date-fns';
 import {
   MuiPickersUtilsProvider,
@@ -9,9 +8,8 @@ import {
 import Button from 'react-bootstrap/Button';
 import "../App.css"
 
-
-
 export default class AddRun extends Component {
+  
   constructor(props) {
     super(props);
 
@@ -69,8 +67,12 @@ export default class AddRun extends Component {
       };
       console.log(run);
       axios.post('http://localhost:5001/runs/add', run)
-        .then(res => console.log(res.data));
-      window.location = '/';
+        .then(res => {console.log(res.data)
+        window.location = '/'})
+        .catch(err => {
+          console.log(err);
+          this.setState( {errorMessage: "Enter valid values"})
+        });
     }
   }
 
@@ -110,19 +112,13 @@ export default class AddRun extends Component {
               />
             </div>
             <div className="form-group">
-              {/* <label>Date: </label>
-              <div>
-                <DatePicker
-                  selected={this.state.date}
-                  onChange={this.onChangeDate}
-                />
-              </div> */}
+            
                <MuiPickersUtilsProvider utils={DateFnsUtils}>
                <KeyboardDatePicker
           margin="normal"
           id="date-picker-dialog"
           label="Date"
-          format="dd/mm/yyyy"
+          format="dd/MM/yyyy"
           value={this.state.date}
           onChange={this.onChangeDate}
           KeyboardButtonProps={{

@@ -22,8 +22,9 @@ export default function Navbar() {
     <div>
       <nav className="navbar navbar-dark bg-dark navbar-expand-lg">
         <div>
+        <Link to="/" className="navbar-brand">Run Tracker</Link>
           <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
-            <Link to="#" className="navbar-brand">Run Tracker</Link>
+            <Link to="#"  id="navMenu-explore">explore</Link>
           </Button>
           <Menu
             id="simple-menu"

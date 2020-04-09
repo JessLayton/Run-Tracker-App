@@ -141,7 +141,7 @@ export default class EditRun extends Component {
           margin="normal"
           id="date-picker-dialog"
           label="Date"
-          format="dd/mm/yyyy"
+          format="dd/MM/yyyy"
           value={this.state.date}
           onChange={this.onChangeDate}
           KeyboardButtonProps={{
